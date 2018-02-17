@@ -319,9 +319,11 @@ int secp256k1_ecdsa_verify(const secp256k1_context* ctx, const secp256k1_ecdsa_s
 
         for (i = 0; i < 32; i++) ptr += sprintf (ptr, "%02X", msg32[i]);
         *ptr++ = ' ';
+        len = 100;
         secp256k1_ecdsa_signature_serialize_der(ctx, der, &len, sig);
         for (i = 0; i < len; i++) ptr += sprintf (ptr, "%02X", der[i]);
         *ptr++ = ' ';
+        len = 100;
         secp256k1_ec_pubkey_serialize(ctx, der, &len, pubkey, SECP256K1_FLAGS_TYPE_COMPRESSION);
         for (i = 0; i < len; i++) ptr += sprintf (ptr, "%02X", der[i]);
 	if (hint) ptr += sprintf (ptr, " %s", hint);
